@@ -9,8 +9,8 @@ class TextRelations(models.Model):
 
 class Sentiment(models.Model):
     text = models.CharField(max_length=255, blank=True)
-    num_yes = models.IntegerField(default=0)
-    num_no = models.IntegerField(default=0)
+    num_positive = models.IntegerField(default=0)
+    num_negative = models.IntegerField(default=0)
     num_neutral = models.IntegerField(default=0)
 
 
