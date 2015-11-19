@@ -14,6 +14,6 @@ class Sentiment(models.Model):
     num_neutral = models.IntegerField(default=0)
 
 
-class Crawlers(models.Model):
+class Crawler(models.Model):
     ip_address = models.GenericIPAddressField(blank=False)
     is_active = models.BooleanField(default=True)
