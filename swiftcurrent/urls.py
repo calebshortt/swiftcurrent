@@ -16,7 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from game import views as gameviews
+
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'data/', include('datastore.urls')),
+    url(r'game/', gameviews.index , name='game_index')
 ]
