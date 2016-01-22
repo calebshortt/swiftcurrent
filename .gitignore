@@ -1,8 +1,4 @@
 
-# Project Files
 .idea/
 
-# File formats
 *.pyc
-
-# Test files

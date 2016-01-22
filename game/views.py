@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, render
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.conf.urls import url
+from rest_framework import viewsets
 
 from datastore import models
 from datastore.models import Sentiment
