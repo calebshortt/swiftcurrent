@@ -23,6 +23,9 @@ class Sentiment(models.Model):
     	# This is just a text for me to understand the inner workings
     	# Of how this framework talks to it's self
 
+    def __unicode__(self):
+        return u'%s' % (self.text, )
+
 
 
 		
@@ -31,4 +34,7 @@ class Sentiment(models.Model):
 class Crawler(models.Model):
     ip_address = models.GenericIPAddressField(blank=False)
     is_active = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return u'%s' % (self.ip_address, )
 
