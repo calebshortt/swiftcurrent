@@ -10,15 +10,20 @@ from datastore import models
 from datastore.models import Sentiment
 
 
+
+class SentimentViewSet(viewsets.ModelViewSet):
+    queryset = Sentiment.objects.all()
+
+
 def index(request):
     return HttpResponse("Hello, world. You're at the game index.")
 
 def question(request , question_id):
-    
+    # Sentiment.objects.get(question_id)
     model = Sentiment()
     template_name = 'gameQuestions.html'
     new_model = model.get(model)
-
-    return HttpResponse(new_model.text)
-
     
+    output = str(model.num_positive) + ' ' + str(model.num_neutral) + ' ' + str(model.num_negative)
+    return HttpResponse( output)
+
