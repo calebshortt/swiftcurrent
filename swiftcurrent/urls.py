@@ -22,7 +22,8 @@ from game import views as gameviews
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'data/', include('datastore.urls')),
-    url(r'game/', gameviews.index, name='game_index'),
-    url(r'(?P<question_id>)/gamequestion/$', gameviews.question, name='gamequestion'),
+    url(r'^$', gameviews.index, name='game_index'),
+    url(r'(?P<question_id>[0-9]+)/gamequestion/$', gameviews.question, name='gamequestion'),
+    
 
 ]

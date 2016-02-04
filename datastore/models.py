@@ -14,14 +14,7 @@ class Sentiment(models.Model):
     num_negative = models.IntegerField(default=0)
     num_neutral = models.IntegerField(default=0)
 
-    def get( self, request, format=None):
-    	self.text = 'The Power of Django!!!'
-        self.num_neutral = 0
-        self.num_negative = -1
-        self.num_positive = 1
-    	return self  
-    	# This is just a text for me to understand the inner workings
-    	# Of how this framework talks to it's self
+    
 
     def __unicode__(self):
         return u'%s' % (self.text, )
