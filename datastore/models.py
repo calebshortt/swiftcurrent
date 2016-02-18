@@ -14,6 +14,11 @@ class Sentiment(models.Model):
     num_negative = models.IntegerField(default=0)
     num_neutral = models.IntegerField(default=0)
 
+    choices = (
+		(num_positive , 'yes'),
+		(num_negative , 'no'),
+		(num_neutral , 'maybe')
+	)
     
 
     def __unicode__(self):

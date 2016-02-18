@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'data/', include('datastore.urls')),
     url(r'^$', gameviews.index, name='game_index'),
     url(r'(?P<question_id>[0-9]+)/gamequestion/$', gameviews.question, name='gamequestion'),
-    
+    url(r'^(?P<question_id>[0-9]+)/vote/$', gameviews.vote, name='vote'),
+    url(r'^(?P<question_id>[0-9]+)/results/$', gameviews.results, name='vote'),
 
 ]

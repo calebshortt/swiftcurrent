@@ -1,8 +1,6 @@
-{% if latest_question_list %}
+{% if question %}
     <ul>
-    {% for Sentiment in latest_question_list %}
-        <li><a href="/{{ Sentiment.id }}/gamequestion">{{ Sentiment.text }}</a></li>
-    {% endfor %}
+        <li><a href="/{{ question.id }}/gamequestion">{{ question.text }}</a></li>
     </ul>
 {% else %}
     <p>No Sentiments are available.</p>
