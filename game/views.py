@@ -8,10 +8,11 @@ from django.http import HttpResponse ,HttpResponseRedirect
 from django.http import Http404
 from django.conf.urls import url
 from rest_framework import viewsets
-from django.template import loader
+from django.template import Context, loader
+
 
 from datastore import models
-from datastore.models import Sentiment
+from datastore.models import Sentiment , Choice
 
 
 
@@ -48,18 +49,19 @@ def results(request , question_id):
 
 
 def vote(request , question_id):
-    value = get_object_or_404(Sentiment, id = question_id)
+    value = get_object_or_404(Sentiment, pk = question_id)
     try:
-        selected_choice = Sentiment.choices[0]
-    except (KeyError, Sentiment.DoesNotExist):
+        selected_choice = value.choice_set.get(pk = request.POST['Choice'])
+    except (KeyError, Choice.DoesNotExist):
         # Redisplay the question voting form.
-        return render(request, 'game/detail.html', {
+        return render(request, 'game/details.html', {
             'Sentiment': value,
             'error_message': "You didn't select a choice.",
         })
     else:
-        # selected_choice.votes += 1
-        # selected_choice.save()
+        # print selected_choice
+        selected_choice.votes += 1
+        selected_choice.save()
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.

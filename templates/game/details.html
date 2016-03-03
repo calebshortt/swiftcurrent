@@ -1,20 +1,14 @@
-{% if Sentiment %}
 
-
-    <h1>{{ Sentiment.text }}</h1>
+    <h1>{{ sentiment.text }}</h1>
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-    <form action="{% url 'game:vote' Sentiment.id %}" method="post">
+    <form action="{% url 'game:vote' sentiment.id %}" method="post">
     {% csrf_token %}
-    {% for choice in Sentminet.choice_set.all %}
+    {% for choice in sentminet.choices.all %}
         <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-        <label for="choice{{ forloop.counter }}">{{ choice.num_Positive }}</label><br />
+        <label for="choice{{ forloop.counter }}">{{ choice.text }}</label><br />
     {% endfor %}
     <input type="submit" value="Vote" />
     </form>
-
-{% else %}
-    <p>No Details Provided</p>
-{% endif %}
 
