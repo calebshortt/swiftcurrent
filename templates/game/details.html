@@ -3,12 +3,16 @@
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-    <form action="{% url 'game:vote' sentiment.id %}" method="post">
+    <form action="{% url 'vote' question_id=sentiment.id %}" method="post">
     {% csrf_token %}
-    {% for choice in sentminet.choices.all %}
-        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-        <label for="choice{{ forloop.counter }}">{{ choice.text }}</label><br />
-    {% endfor %}
+
+        <input type="radio" name="Sentiment" id="choice1" value="1" />
+        <label for="choice1"> positive </label><br />
+        <input type="radio" name="Sentiment" id="choice2" value="2" />
+        <label for="choice2"> negative </label><br />
+        <input type="radio" name="Sentiment" id="choice3" value="3" />
+        <label for="choice3"> Neutral </label><br />
+
     <input type="submit" value="Vote" />
     </form>
 

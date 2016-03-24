@@ -41,28 +41,47 @@ def question(request , question_id):
         # title = title + value.text
     except Sentiment.ObjectDoesNotExist:
         raise Http404("Sentiment does not exsist")
-    return render(request , 'game/index.html' , {'question' : value})
+    return render(request , 'game/index.html' , {'question':value })
 
 def results(request , question_id):
     value = get_object_or_404(Sentiment , id = question_id)
-    return render(request , 'game/results.html' , {'question':value })
+    return render(request , 'game/results.html' , {'sentiment':value })
 
+def detail(request , question_id):
+    try:
+        value = get_object_or_404(Sentiment, id=question_id)
+    except (KeyError , Sentiment.DoesNotExist):
+        raise Http404("Sentiment Doesn't exsist")
+    return render(request , 'game\details.html' , {'sentiment' : value} )
 
 def vote(request , question_id):
     value = get_object_or_404(Sentiment, pk = question_id)
     try:
-        selected_choice = value.choice_set.get(pk = request.POST['Choice'])
+        selected_choice = request.POST.get('Sentiment', None)
+
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the question voting form.
-        return render(request, 'game/details.html', {
-            'Sentiment': value,
+        return render(request, 'game\details.html', {
+            'sentiment': value,
             'error_message': "You didn't select a choice.",
         })
     else:
+        if selected_choice == selected_choice + str(1):
+            value.num_positive += 1
+        elif selected_choice == selected_choice + str(2):
+            value.num_negative += 1
+        elif selected_choice == selected_choice + str(3):
+            value.num_neutral += 1
+        value.save()
+
+        # if for selected choice
+
+
         # print selected_choice
-        selected_choice.votes += 1
-        selected_choice.save()
+        # selected_choice.votes += 1
+        # selected_choice.save()
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('game:results', args=(request , question_id)))
+        return HttpResponseRedirect(reverse('game:results', args=(value) ))
+        # return HttpResponseRedirect(reverse('game:results', args=(request , question_id)))

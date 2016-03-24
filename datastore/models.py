@@ -13,17 +13,16 @@ class Sentiment(models.Model):
     num_positive = models.IntegerField(default=0)
     num_negative = models.IntegerField(default=0)
     num_neutral = models.IntegerField(default=0)
-
-	# choices =[
-     #    [num_positive , 'yes'],
-     #    [num_negative , 'no'],
-     #    [num_neutral , 'maybe']
-	# ]
-    SentimentChoices = (
-        (num_positive , 'yes'),
-        (num_negative , 'no'),
-        (num_neutral , 'maybe')
-    )
+    choice =[
+        [num_positive , 'yes'],
+        [num_negative , 'no'],
+        [num_neutral , 'maybe']
+	]
+	# SentimentChoices = (
+     #    (num_positive , 'yes'),
+     #    (num_negative , 'no'),
+     #    (num_neutral , 'maybe')
+	# )
 
 
     
@@ -36,8 +35,10 @@ class Sentiment(models.Model):
 		
 class Choice(models.Model):
     sentiment = models.ForeignKey(Sentiment, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
+    choice_text = models.CharField(max_length=255, blank=True)
     votes = models.IntegerField(default=0)
+    def __unicode__(self):  # Python 3: def __str__(self):
+       return self.choice_text
 
 
 class Crawler(models.Model):
