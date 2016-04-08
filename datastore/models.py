@@ -13,16 +13,7 @@ class Sentiment(models.Model):
     num_positive = models.IntegerField(default=0)
     num_negative = models.IntegerField(default=0)
     num_neutral = models.IntegerField(default=0)
-    choice =[
-        [num_positive , 'yes'],
-        [num_negative , 'no'],
-        [num_neutral , 'maybe']
-	]
-	# SentimentChoices = (
-     #    (num_positive , 'yes'),
-     #    (num_negative , 'no'),
-     #    (num_neutral , 'maybe')
-	# )
+
 
 
     

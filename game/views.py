@@ -66,22 +66,19 @@ def vote(request , question_id):
             'error_message': "You didn't select a choice.",
         })
     else:
-        if selected_choice == selected_choice + str(1):
+        if selected_choice ==  str(1):
             value.num_positive += 1
-        elif selected_choice == selected_choice + str(2):
+        elif selected_choice == str(2):
             value.num_negative += 1
-        elif selected_choice == selected_choice + str(3):
+        elif selected_choice == str(3):
             value.num_neutral += 1
         value.save()
-
         # if for selected choice
-
-
         # print selected_choice
         # selected_choice.votes += 1
         # selected_choice.save()
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('game:results', args=(value) ))
-        # return HttpResponseRedirect(reverse('game:results', args=(request , question_id)))
+        return HttpResponseRedirect(reverse('results', args=(value.id,)))
+
