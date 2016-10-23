@@ -52,7 +52,7 @@ def detail(request , question_id):
         value = get_object_or_404(Sentiment, id=question_id)
     except (KeyError , Sentiment.DoesNotExist):
         raise Http404("Sentiment Doesn't exsist")
-    return render(request , 'game\details.html' , {'sentiment' : value} )
+    return render(request , 'game/details.html' , {'sentiment' : value} )
 
 def vote(request , question_id):
     value = get_object_or_404(Sentiment, pk = question_id)
@@ -61,7 +61,7 @@ def vote(request , question_id):
 
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the question voting form.
-        return render(request, 'game\details.html', {
+        return render(request, 'game/details.html', {
             'sentiment': value,
             'error_message': "You didn't select a choice.",
         })

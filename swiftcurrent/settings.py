@@ -38,12 +38,14 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
     # Dev-Created Apps (What We have created)
     'game',
     'datastore',
 
     # Included apps (3rd Party)
     'rest_framework',
+
 )
 
 MIDDLEWARE_CLASSES = (

@@ -11,6 +11,14 @@ class CrawlerSerializer(serializers.ModelSerializer):
 
 
 class SentimentSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        return Sentiment.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance = validated_data(instance)
+        instance.save()
+        return instance
+
     class Meta:
         model = Sentiment
 

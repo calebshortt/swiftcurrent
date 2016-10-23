@@ -3,6 +3,12 @@
 <ul>
 {% for choice in sentiment.choice_set.all %}
     <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    </n>
+    <p2>{{ choice.num_positive }}</p2>
+    </n>
+    <p2>{{ choice.num_negative }}</p2>
+    </n>
+    <p2>{{ choice.num_neutral }}</p2>
 {% endfor %}
 </ul>
 

@@ -14,10 +14,6 @@ class Sentiment(models.Model):
     num_negative = models.IntegerField(default=0)
     num_neutral = models.IntegerField(default=0)
 
-
-
-    
-
     def __unicode__(self):
         return u'%s' % (self.text, )
 
@@ -33,6 +29,7 @@ class Choice(models.Model):
 
 
 class Crawler(models.Model):
+    Payload = models.CharField(max_length=255, blank=True)
     ip_address = models.GenericIPAddressField(blank=False)
     is_active = models.BooleanField(default=True)
 
